@@ -1,13 +1,4 @@
-const fs = require('fs')
-
-fs.readFile('input.txt', `utf8`, (err, data) => {
-    if (err) throw err;
-    const input = data.split("\n")
-
-    move_submarine(input);
-    move_submarine_smart(input);
-});
-
+const {fileReader} = require("../helper");
 
 const move_submarine = (input) => {
     let horizontal = 0;
@@ -45,4 +36,5 @@ const move_submarine_smart = (input) => {
     console.log("Result", horizontal * depth)
 }
 
-
+fileReader('input.txt', move_submarine)
+fileReader('input.txt', move_submarine_smart)

@@ -1,12 +1,4 @@
-const fs = require('fs')
-
-fs.readFile('input.txt', `utf8`, (err, data) => {
-    if (err) throw err;
-    const input = data.split("\n")
-
-    sonar_sweep(input)
-    sonar_sweep_2(input)
-});
+const {fileReader} = require("../helper");
 
 const sonar_sweep = (input) => {
     let lastVal = input[0];
@@ -28,3 +20,6 @@ const sonar_sweep_2 = (input) => {
     }
     sonar_sweep(result)
 }
+
+fileReader('input.txt', sonar_sweep)
+fileReader('input.txt', sonar_sweep_2)
