@@ -4,7 +4,9 @@ module.exports = {
     fileReader: (path, callback) => {
         fs.readFile(path, `utf8`, (err, data) => {
             if (err) throw err;
-            callback(data.split("\n"))
+            const splitData = data.split("\n");
+            const cleanData = splitData.filter(Boolean)
+            callback(cleanData)
         })
     }
 }
