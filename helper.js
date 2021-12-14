@@ -1,11 +1,11 @@
 const fs = require('fs')
 
 module.exports = {
-    fileReader: (path, callback) => {
+    fileReader: (path, callback, clean = true) => {
         fs.readFile(path, `utf8`, (err, data) => {
             if (err) throw err;
             const splitData = data.split("\n");
-            const cleanData = splitData.filter(Boolean)
+            const cleanData = clean ? splitData.filter(Boolean) : splitData;
             callback(cleanData)
         })
     },
