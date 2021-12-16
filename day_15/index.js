@@ -52,11 +52,10 @@ const djikstra = (graph) => {
     distances[0][0] = 0; // initial node is distance 0
 
     let currentNode = [0,0]
-    let currentNodeValue = +graph[currentNode[1]][currentNode[0]]
+    let currentNodeValue = 0
     const possiblePaths = {}
 
     while (true) {
-        if (distances[height -1][width - 1] !== Infinity) break;
         unvisited[currentNode[1]][currentNode[0]] = false;
         const unvisitedNeighbors = findUnvisitedNeighbours(currentNode, unvisited);
         unvisitedNeighbors.forEach(coord => {
@@ -92,21 +91,21 @@ const djikstra = (graph) => {
         delete possiblePaths[smallestKey]
         currentNode = nextCurrentNode.idx
         currentNodeValue = nextCurrentNode.value
+        if (distances[height -1][width - 1] !== Infinity) break;
     }
 
 
 
-    console.log(distances[height-1][width-1] - 1)
-    //distances.forEach(row => console.log(row.join(" ")))
+    console.log(distances[height-1][width-1])
+    //distances.forEach(row => console.log(row.join(",")))
 }
 
-const t = (input) => {
+const pathfinder = (input) => {
     const grid = input.map(row => row.split("").map(el => +el))
-
 
     djikstra(grid)
     const bigGrid = createBiggerMap(grid)
     djikstra(bigGrid)
 }
 
-fileReader("input.txt", t);
+fileReader("input.txt", pathfinder);
